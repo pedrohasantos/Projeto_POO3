@@ -4,13 +4,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Bem vindo, bravo aventureiro!, se é que esse é mesmo seu nome...");
+        System.out.println("Digite seu nome: ");
+        String nomeAventureiro = scanner.next();
+        Aventureiro aventureiro = new Aventureiro(nomeAventureiro);
+
         while (true) {
-            System.out.println("Bem vindo, bravo aventureiro, será que esse é seu nome mesmo ??\nDigite seu nome: ");
             System.out.println("Escolha a dificuldade do labirinto (1-Fácil, 2-Médio, 3-Difícil): ");
-            Aventureiro aventureiro = scanner.nextString();
             int escolha = scanner.nextInt();
             int tamanho = 20;
-            
+
             switch (escolha) {
                 case 1:
                     tamanho = 20;
@@ -32,10 +35,10 @@ public class Main {
                 labirinto.printarLabirinto();
                 System.out.println("Escolha sua ação aventureiro: \n1. Mover-se\n2. Descansar\n3. Interagir\n4. Sair");
                 int ops = scanner.nextInt();
-
+            
                 switch (ops) {
                     case 1:
-                        aventureiro.mover(labirinto);
+                        aventureiro.mover(labirinto, tamanho);
                         break;
                     case 2:
                         aventureiro.descansar();
