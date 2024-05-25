@@ -18,66 +18,24 @@ public class Aventureiro {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getPosicao() {
-        return posicao;
-    }
-
-    public void setPosicao(int posicao) {
-        this.posicao = posicao;
-    }
-
     public int getEnergia() {
         return energia;
     }
 
-    public void setEnergia(int energia) {
-        this.energia = energia;
-    }
-
-    public ArrayList<Tesouro> getTesourosColetados() {
-        return tesourosColetados;
-    }
-
-    public void mover(Labirinto labirinto) {
+    public void mover(Labirinto labirinto, int base) {
         if (energia <= 0) {
             System.out.println("Energia insuficiente para mover.");
             return;
         }
 
         Random rand = new Random();
-        int novaPosicao = posicao + rand.nextInt(6) + 1;
+        int novaPosicao = posicao + rand.nextInt(6) + 1; // Movendo aleatoriamente de 1 a 6 posições
 
         try {
-            if (labirinto.isDentroDoLabirinto(novaPosicao)) {
+            if (labirinto.isDentroDoLabirinto(novaPosicao, 0)) {
                 this.posicao = novaPosicao;
-                this.energia -= 1;
                 System.out.println(nome + " se moveu para a posição " + novaPosicao + ". Energia restante: " + energia);
-
-                // Verificar armadilha
-                for (Armadilha armadilha : labirinto.getListaArmadilhas()) {
-                    if (armadilha.getPosicao() == novaPosicao) {
-                        System.out.println("Você caiu em uma armadilha! Dano: " + armadilha.getDano());
-                        this.energia -= 1;
-                        if (this.energia <= 0) {
-                            System.out.println("Você morreu!");
-                            reiniciarJogo(labirinto);
-                            return;
-                        }
-                        break;
-                    }
-                }
-
-                // Verificar tesouro
-                for (Tesouro tesouro : labirinto.getListaTesouros()) {
-                    if (tesouro.getPosicao() == novaPosicao) {
-                        System.out.println("Você encontrou um tesouro: " + tesouro.getNome());
-                        break;
-                    }
-                }
+                labirinto.atualizarPosicaoAventureiro(novaPosicao, base / 2); // Aventureiro move apenas para a direita, mantendo a mesma coluna
             } else {
                 throw new Exception("Movimento inválido! Fora do labirinto.");
             }
@@ -86,28 +44,18 @@ public class Aventureiro {
         }
     }
 
+
     public void descansar() {
-        this.energia += 2;
-        System.out.println(nome + " descansou e recuperou 2 de energia. Energia atual: " + energia);
+        if(energia>=10){
+            System.out.println("você ja esta descansado, deixe de preguiça e siga seu caminho");
+        }
+        else{
+            this.energia += 2;
+            System.out.println(nome + " descansou e recuperou 2 de energia. Energia atual: " + energia);
+        }
     }
 
     public void interagir(Labirinto labirinto) {
-        for (Tesouro tesouro : labirinto.getListaTesouros()) {
-            if (tesouro.getPosicao() == posicao) {
-                tesourosColetados.add(tesouro);
-                labirinto.removerTesouro(tesouro);
-                System.out.println(nome + " coletou " + tesouro.getNome());
-                return;
-            }
-        }
-        System.out.println("Nenhum tesouro para coletar nesta posição.");
-    }
-
-    private void reiniciarJogo(Labirinto labirinto) {
-        this.posicao = 0;
-        this.energia = 10;
-        this.tesourosColetados.clear();
-        labirinto.gerarLabirinto();
-        System.out.println("O jogo foi reiniciado. Boa sorte, " + nome + "!");
+        System.out.println("Interagindo...");
     }
 }
