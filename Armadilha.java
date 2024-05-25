@@ -11,15 +11,7 @@ public class Armadilha {
         return posicao;
     }
 
-    public void setPosicao(int posicao) {
-        this.posicao = posicao;
-    }
-
     public int getDano() {
         return dano;
-    }
-
-    public void setDano(int dano) {
-        this.dano = dano;
     }
 }
