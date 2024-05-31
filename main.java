@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        @SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
 
         System.out.println("Bem vindo, bravo aventureiro!, se é que esse é mesmo seu nome...");
         System.out.println("Digite seu nome: ");

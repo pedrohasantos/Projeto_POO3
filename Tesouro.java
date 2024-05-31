@@ -1,23 +1,13 @@
+
 public class Tesouro {
-    private String nome;
-    private int posicao;
-    private int pontos;
 
-    public Tesouro(String nome, int posicao, int pontos) {
-        this.nome = nome;
-        this.posicao = posicao;
-        this.pontos = pontos;
-    }
+	public Tesouro(String string, int coluna, int nextInt) {
+		// TODO Auto-generated constructor stub
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public int getPosicao() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-    public int getPosicao() {
-        return posicao;
-    }
-
-    public int getPontos() {
-        return pontos;
-    }
 }

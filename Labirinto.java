@@ -15,7 +15,8 @@ public class Labirinto {
         gerarLabirinto();
     }
 
-    public void gerarLabirinto() {
+    @SuppressWarnings("unused")
+	public void gerarLabirinto() {
         Random rand = new Random();
         // Inicializando a pirâmide com espaços vazios
         for (int i = 0; i < 3; i++) {

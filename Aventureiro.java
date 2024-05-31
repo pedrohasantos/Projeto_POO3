@@ -9,9 +9,9 @@ public class Aventureiro {
 
     public Aventureiro(String nome) {
         this.nome = nome;
-        this.posicao = 0; // Posição inicial
-        this.energia = 10; // Energia inicial
-        this.tesourosColetados = new ArrayList<>();
+        this.posicao = 0; 
+        this.energia = 10; 
+        this.setTesourosColetados(new ArrayList<>());
     }
 
     public String getNome() {
@@ -29,13 +29,13 @@ public class Aventureiro {
         }
 
         Random rand = new Random();
-        int novaPosicao = posicao + rand.nextInt(6) + 1; // Movendo aleatoriamente de 1 a 6 posições
+        int novaPosicao = posicao + rand.nextInt(6) + 1; 
 
         try {
             if (labirinto.isDentroDoLabirinto(novaPosicao, 0)) {
                 this.posicao = novaPosicao;
                 System.out.println(nome + " se moveu para a posição " + novaPosicao + ". Energia restante: " + energia);
-                labirinto.atualizarPosicaoAventureiro(novaPosicao, base / 2); // Aventureiro move apenas para a direita, mantendo a mesma coluna
+                labirinto.atualizarPosicaoAventureiro(novaPosicao, base / 2); 
             } else {
                 throw new Exception("Movimento inválido! Fora do labirinto.");
             }
@@ -58,4 +58,32 @@ public class Aventureiro {
     public void interagir(Labirinto labirinto) {
         System.out.println("Interagindo...");
     }
+
+	public ArrayList<Tesouro> getTesourosColetados() {
+		return tesourosColetados;
+	}
+
+	public void setTesourosColetados(ArrayList<Tesouro> tesourosColetados) {
+		this.tesourosColetados = tesourosColetados;
+	}
+
+	public void moverNorte(Labirinto labirinto, int tamanho) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void moverSul(Labirinto labirinto, int tamanho) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void moverLeste(Labirinto labirinto, int tamanho) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void moverOeste(Labirinto labirinto, int tamanho) {
+		// TODO Auto-generated method stub
+		
+	}
 }
